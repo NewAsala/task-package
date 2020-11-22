@@ -17,5 +17,11 @@
         "psr-4": {
             "Akrad\\Bridage\\": "src/"
         }
+    },"extra": {
+        "laravel": {
+            "providers": [
+                "Akrad\\Bridage\\BridageServiceProvider"
+            ]
+        }
     }
 }
