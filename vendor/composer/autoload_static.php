@@ -11,12 +11,20 @@ class ComposerStaticInit4e4e7d68bebc1a7e9171c0d61a87e2b0
         array (
             'Symfony\\Component\\EventDispatcher\\' => 34,
         ),
+        'A' => 
+        array (
+            'Akrad\\Bridage\\' => 14,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
         'Symfony\\Component\\EventDispatcher\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
+        ),
+        'Akrad\\Bridage\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
     );
 
