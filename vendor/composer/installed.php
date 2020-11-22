@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'd22cd571def388082c5613f8a8822b432d5cf8ea',
+    'reference' => 'c88bca206b110892196097b7bddd696bf26bc279',
     'name' => 'akrad/bridage',
   ),
   'versions' => 
@@ -18,78 +18,202 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'd22cd571def388082c5613f8a8822b432d5cf8ea',
+      'reference' => 'c88bca206b110892196097b7bddd696bf26bc279',
     ),
-    'guzzlehttp/guzzle' => 
+    'guzzle/batch' => 
     array (
-      'pretty_version' => '7.2.0',
-      'version' => '7.2.0.0',
-      'aliases' => 
+      'replaced' => 
       array (
+        0 => '3.9.x-dev',
+        1 => 'dev-master',
       ),
-      'reference' => '0aa74dfb41ae110835923ef10a9d803a22d50e79',
     ),
-    'guzzlehttp/promises' => 
+    'guzzle/cache' => 
     array (
-      'pretty_version' => 'dev-master',
-      'version' => 'dev-master',
-      'aliases' => 
+      'replaced' => 
       array (
-        0 => '1.4.x-dev',
+        0 => '3.9.x-dev',
+        1 => 'dev-master',
       ),
-      'reference' => 'ddfeedfff2a52661429437da0702979f708e6ac6',
     ),
-    'guzzlehttp/psr7' => 
+    'guzzle/common' => 
     array (
-      'pretty_version' => '1.x-dev',
-      'version' => '1.9999999.9999999.9999999-dev',
-      'aliases' => 
+      'replaced' => 
       array (
+        0 => '3.9.x-dev',
+        1 => 'dev-master',
       ),
-      'reference' => '25f7f893f0b52b7b14e244a16679d72b1f0088de',
     ),
-    'psr/http-client' => 
+    'guzzle/guzzle' => 
     array (
       'pretty_version' => 'dev-master',
       'version' => 'dev-master',
       'aliases' => 
       array (
-        0 => '1.0.x-dev',
+        0 => '3.9.x-dev',
       ),
-      'reference' => '22b2ef5687f43679481615605d7a15c557ce85b1',
+      'reference' => 'f7778ed85e3db90009d79725afd6c3a82dab32fe',
     ),
-    'psr/http-client-implementation' => 
+    'guzzle/http' => 
     array (
-      'provided' => 
+      'replaced' => 
       array (
-        0 => '1.0',
+        0 => '3.9.x-dev',
+        1 => 'dev-master',
       ),
     ),
-    'psr/http-message' => 
+    'guzzle/inflection' => 
     array (
-      'pretty_version' => 'dev-master',
-      'version' => 'dev-master',
+      'replaced' => 
+      array (
+        0 => '3.9.x-dev',
+        1 => 'dev-master',
+      ),
+    ),
+    'guzzle/iterator' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '3.9.x-dev',
+        1 => 'dev-master',
+      ),
+    ),
+    'guzzle/log' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '3.9.x-dev',
+        1 => 'dev-master',
+      ),
+    ),
+    'guzzle/parser' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '3.9.x-dev',
+        1 => 'dev-master',
+      ),
+    ),
+    'guzzle/plugin' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '3.9.x-dev',
+        1 => 'dev-master',
+      ),
+    ),
+    'guzzle/plugin-async' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '3.9.x-dev',
+        1 => 'dev-master',
+      ),
+    ),
+    'guzzle/plugin-backoff' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '3.9.x-dev',
+        1 => 'dev-master',
+      ),
+    ),
+    'guzzle/plugin-cache' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '3.9.x-dev',
+        1 => 'dev-master',
+      ),
+    ),
+    'guzzle/plugin-cookie' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '3.9.x-dev',
+        1 => 'dev-master',
+      ),
+    ),
+    'guzzle/plugin-curlauth' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '3.9.x-dev',
+        1 => 'dev-master',
+      ),
+    ),
+    'guzzle/plugin-error-response' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '3.9.x-dev',
+        1 => 'dev-master',
+      ),
+    ),
+    'guzzle/plugin-history' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '3.9.x-dev',
+        1 => 'dev-master',
+      ),
+    ),
+    'guzzle/plugin-log' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '3.9.x-dev',
+        1 => 'dev-master',
+      ),
+    ),
+    'guzzle/plugin-md5' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '3.9.x-dev',
+        1 => 'dev-master',
+      ),
+    ),
+    'guzzle/plugin-mock' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '3.9.x-dev',
+        1 => 'dev-master',
+      ),
+    ),
+    'guzzle/plugin-oauth' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '3.9.x-dev',
+        1 => 'dev-master',
+      ),
+    ),
+    'guzzle/service' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '3.9.x-dev',
+        1 => 'dev-master',
+      ),
+    ),
+    'guzzle/stream' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '3.9.x-dev',
+        1 => 'dev-master',
+      ),
+    ),
+    'symfony/event-dispatcher' => 
+    array (
+      'pretty_version' => '2.8.x-dev',
+      'version' => '2.8.9999999.9999999-dev',
       'aliases' => 
       array (
-        0 => '1.0.x-dev',
       ),
-      'reference' => 'efd67d1dc14a7ef4fc4e518e7dee91c271d524e4',
-    ),
-    'psr/http-message-implementation' => 
-    array (
-      'provided' => 
-      array (
-        0 => '1.0',
-      ),
-    ),
-    'ralouphie/getallheaders' => 
-    array (
-      'pretty_version' => '3.0.3',
-      'version' => '3.0.3.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '120b605dfeb996808c31b6477290a714d356e822',
+      'reference' => 'a77e974a5fecb4398833b0709210e3d5e334ffb0',
     ),
   ),
 );
