@@ -6,10 +6,24 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit4e4e7d68bebc1a7e9171c0d61a87e2b0
 {
+    public static $files = array (
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
+        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
-        'S' => 
+        'P' => 
         array (
-            'Symfony\\Component\\EventDispatcher\\' => 34,
+            'Psr\\Http\\Message\\' => 17,
+            'Psr\\Http\\Client\\' => 16,
+        ),
+        'G' => 
+        array (
+            'GuzzleHttp\\Psr7\\' => 16,
+            'GuzzleHttp\\Promise\\' => 19,
+            'GuzzleHttp\\' => 11,
         ),
         'A' => 
         array (
@@ -18,27 +32,29 @@ class ComposerStaticInit4e4e7d68bebc1a7e9171c0d61a87e2b0
     );
 
     public static $prefixDirsPsr4 = array (
-        'Symfony\\Component\\EventDispatcher\\' => 
+        'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'Psr\\Http\\Client\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-client/src',
+        ),
+        'GuzzleHttp\\Psr7\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
+        ),
+        'GuzzleHttp\\Promise\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
+        ),
+        'GuzzleHttp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
         'Akrad\\Bridage\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
-        ),
-    );
-
-    public static $prefixesPsr0 = array (
-        'G' => 
-        array (
-            'Guzzle\\Tests' => 
-            array (
-                0 => __DIR__ . '/..' . '/guzzle/guzzle/tests',
-            ),
-            'Guzzle' => 
-            array (
-                0 => __DIR__ . '/..' . '/guzzle/guzzle/src',
-            ),
         ),
     );
 
@@ -51,7 +67,6 @@ class ComposerStaticInit4e4e7d68bebc1a7e9171c0d61a87e2b0
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit4e4e7d68bebc1a7e9171c0d61a87e2b0::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit4e4e7d68bebc1a7e9171c0d61a87e2b0::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit4e4e7d68bebc1a7e9171c0d61a87e2b0::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit4e4e7d68bebc1a7e9171c0d61a87e2b0::$classMap;
 
         }, null, ClassLoader::class);
