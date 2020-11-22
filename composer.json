@@ -1,0 +1,21 @@
+{
+    "name": "akrad/bridage",
+    "description": "this will linked between two projects",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Akrad",
+            "email": "akrad@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "guzzle/guzzle": "~3.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Akrad\\Bridage\\": "src/"
+        }
+    }
+}
