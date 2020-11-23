@@ -19,7 +19,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'c88bca206b110892196097b7bddd696bf26bc279',
+    'reference' => '7b0178a819df55af676c706e0210f99c29d611ce',
     'name' => 'akrad/bridage',
   ),
   'versions' => 
@@ -31,7 +31,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'c88bca206b110892196097b7bddd696bf26bc279',
+      'reference' => '7b0178a819df55af676c706e0210f99c29d611ce',
     ),
     'guzzle/batch' => 
     array (
