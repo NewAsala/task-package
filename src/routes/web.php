@@ -9,4 +9,8 @@ Route::group(['namespace'=>'Akrad\Bridage\Http\Controllers'],function(){
     Route::post('/bridage','BridageController@send');
 
     Route::get('/addProject','BridageController@addProject');
+
+    Route::get('/models', 'modelController@getAllModels');
+
+    Route::get('/users', 'BridageController@getAllUsers');
 });
