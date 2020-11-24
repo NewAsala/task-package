@@ -34,11 +34,16 @@ class ApiAddProject
     {
         // $event ->viewer = $event ->viewer +1;
         // $event ->save();
+        $params = [
+            'query' => [
+               'name' => $event->title
+            ]
+         ];
+
         $client = new Client();
-        $response = $client->request('GET','http://localhost:8083/sos');
+        $response = $client->request('GET','http://localhost:8083/spaceStoreTest',$params);
         $statusCode = $response->getStatusCode();
         $body = $response->getBody()->getContents();
-
-        //dd($body);
+        dd($statusCode);
     }
 }

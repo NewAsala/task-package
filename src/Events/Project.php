@@ -10,6 +10,8 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Akrad\Bridage\Models\addProject;
+use Illuminate\Http\Request;
+
 
 class Project
 {
@@ -21,7 +23,7 @@ class Project
      *
      * @return void
      */
-    public function __construct(addProject $event)
+    public function __construct(Request $event)
     {
         $this->event = $event;
     }
