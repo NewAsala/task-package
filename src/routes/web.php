@@ -11,7 +11,7 @@ Route::group(['namespace'=>'Akrad\Bridage\Http\Controllers'],function(){
 
     Route::get('/addProject','BridageController@addProject');
 
-    Route::get('/users', 'userController@getAllUsers');
+    //Route::get('/users', 'userController@getAllUsers');
 
     Route::get('/models', 'modelController@getAllModels')->name('models');
 
