@@ -34,7 +34,8 @@ class ApiAddProject
     {
         // $event ->viewer = $event ->viewer +1;
         // $event ->save();
-        $params = [
+
+        /*$params = [
             'query' => [
                'name' => $event->title
             ]
@@ -44,6 +45,37 @@ class ApiAddProject
         $response = $client->request('GET','http://localhost:8083/spaceStoreTest',$params);
         $statusCode = $response->getStatusCode();
         $body = $response->getBody()->getContents();
-        dd($statusCode);
+        dd($statusCode);*/
+
+        $params = [
+            'query' => [
+               'email' => $event->title,
+               'password' => $event->group
+            ]
+        ];
+
+        $client = new Client();
+        $response = $client->request('post','http://127.0.0.1:8083/api/auth/login',$params);
+        $statusCode = $response->getStatusCode();
+        $body = $response->getBody()->getContents();
+        
+        /////////////////////////////////////////////////////
+
+        $token = json_decode($body)->access_token;
+
+        $client1 = new Client(['base_uri' => 'http://127.0.0.1:8083/']);
+
+        $headers = [
+            'Authorization' => 'Bearer ' . $token,        
+            'Accept'        => 'application/json',
+        ];
+
+        $response1 = $client1->request('Post', '/api/auth/me', [
+            'headers' => $headers
+        ]);
+
+        $body1 = $response1->getBody()->getContents();
+
+        dd($body1);
     }
 }
