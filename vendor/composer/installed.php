@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '44b4dd78d161da6e1306e56770e3dcbc9b8f09f6',
+    'reference' => 'b6733ed9ebff4b9f5b5c2ed209f5e3aa70776457',
     'name' => 'akrad/bridage',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '44b4dd78d161da6e1306e56770e3dcbc9b8f09f6',
+      'reference' => 'b6733ed9ebff4b9f5b5c2ed209f5e3aa70776457',
     ),
     'guzzlehttp/guzzle' => 
     array (
