@@ -17,5 +17,5 @@ Route::group(['namespace'=>'Akrad\Bridage\Http\Controllers'],function(){
 
     Route::post('/models','modelController@send');
 
-
+    Route::get('/getAttribute/{path}', 'modelController@getAttribute');
 });
