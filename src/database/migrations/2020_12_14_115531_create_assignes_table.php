@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBridagesTable extends Migration
+class CreateAssignesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateBridagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('bridages', function (Blueprint $table) {
+        Schema::create('assignes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('modelName');
-            $table->unsignedBigInteger('modelId');
-            $table->string('taskName');
-            $table->unsignedBigInteger('taskId');
+            $table->String('name');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateBridagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bridages');
+        Schema::dropIfExists('assignes');
     }
 }

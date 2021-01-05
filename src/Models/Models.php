@@ -2,11 +2,7 @@
 
 namespace Akrad\Bridage\Models;
 
-use Illuminate\User;
-use Illuminate\Database\Eloquent\Model;
-
-
-class Models
+trait Models
 {
     protected static $models = [];
 
@@ -25,4 +21,5 @@ class Models
 
         return $model;
     }  
+
 }
