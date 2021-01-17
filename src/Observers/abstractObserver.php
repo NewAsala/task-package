@@ -17,31 +17,25 @@ class abstractObserver
 {
     public static function checkRule($model,$event)
     {
-        $information  = Helper::where('events',$event)->get();
+        $information  = Helper::whereIn('object', [get_class($model), '\\' . get_class($model)])->where('events',$event)->get();
+
+        $tableName = $model->getTable();
+        $attributes = self::getParameter($tableName);
 
         foreach($information as $info){
-
-            $modelName = Models::makeModel($info->object);
-            $tableName = $modelName->getTable();
-            // $modelName = explode("\\",$info->object);
-            // $modelNameFormat = strtolower($modelName[count($modelName)-1]."s");
+            
             $conditions = json_decode($info->conditionRule);
-
-            if($model->getTable() == $tableName){
                 
-                if($info->statuse)
-                {
-                    $attributes = self::getParameter($tableName);
-                    
-                    $check  =self::executeCondition($attributes ,$model,$conditions);
-                    if($check){
+            if($info->statuse)
+            { 
+                $check  =self::executeCondition($attributes ,$model,$conditions);
+                if($check){
 
-                        $arrayAction = json_decode(json_decode($info->action));
-                        
-                        foreach($arrayAction as $action)
-                        {
-                            self::executeFunction($attributes,$model,$action);
-                        }
+                    $arrayAction = json_decode(json_decode($info->action));
+                    
+                    foreach($arrayAction as $action)
+                    {
+                        self::executeFunction($attributes,$model,$action);
                     }
                 }
             }

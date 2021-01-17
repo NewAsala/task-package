@@ -1,68 +1,53 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('content')
 
-    <h1> Set Function With Parameter </h1>
+    <h1>Add new functions</h1>
 
-    <form  id="form" action="{{route('func')}}" method="post">
-    @csrf
+    <div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-8 px-0 px-sm-3">
+				<form  id="functionForm" action="{{route('func')}}" method="post">
+					@csrf
+					<div class="row function-group">
+						<div class="col">
+							<label for="func">Function name: </label>
+							<input class = "form-control" type="text" name="func" placeholder="Function name: ">
+						</div>
 
-        <input type="text" name="func" placeholder="function name">
+						<div class="col">
+							<label for="returnFun">Return type: </label>
+							<input class = "form-control" type="text" name="returnFun" placeholder="Return type: ">
+						</div>
 
-        <input type="text" name="returnFun" placeholder="return type">
-
-        <input type="number" id="quantity" class="button" name="quantity" value="0">
-        
-        <table id="myTable">
-        <tr>
-            <td>parameter name</td>
-            <td>parameter type</td>
-            <td>parameter example</td>
-        </tr>
-        
-        </table>
-        <br>
-        
-        <input type="submit" value="Submit">        
-
-    </form>
-    </body>
-
-</html>
-
-<script>
-
-    var numParameter = document.getElementById("quantity");
-    var form = document.getElementById("form");
-
-    let num = 0 ;
-    $(".button").on("click", function() {
-
-        var myTable = document.getElementById("myTable");
-        var tr = document.createElement("tr");
-        var tdInput = document.createElement("td");
-        var tdType = document.createElement("td");
-        var tdExample = document.createElement("td");
-        
-        var input = document.createElement("input");
-        var type = document.createElement("input");
-        var example = document.createElement("input");
-
-        input.name = "parameter["+num+"][name]";
-        type.name = "parameter["+num+"][type]";
-        example.name = "parameter["+num+"][example]";
-
-        myTable.appendChild(tr);
-        tr.appendChild(tdInput);
-        tr.appendChild(tdType);
-        tr.appendChild(tdExample);
-
-        tdInput.appendChild(input);
-        tdType.appendChild(type);
-        tdExample.appendChild(example);
-        num++;
-
-    });
-
-</script>
+						<div class="col d-flex align-items-center justify-content-center">
+							<button class="btn btn-dark" id = "addParameter">
+								Add Parameter
+							</button>
+						</div>
+					</div>
+	
+					<table id="functionTable" class="table">
+						<thead>
+							<tr>
+								<th>Parameter name</th>
+								<th>Parameter type</th>
+								<th>Example</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							{{-- this is where parameters go --}}
+						</tbody>
+					</table>
+					
+					<button type="submit" class="btn btn-dark">Submit Function</button>
+					<input type="hidden" name="function_data">
+				</form>
+			</div>
+		</div>	
+	</div>
+<script src ="./assets/js/dynamic_function/main.js" type="module"></script>
 @endsection
+
+{{-- i'm using css counters to achieve proper numbering of rows. check out app.css --}}

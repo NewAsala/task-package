@@ -3,34 +3,52 @@
 */
 export function fixModelNames() {
 	Array.from(document.getElementsByClassName('option')).forEach(option => {
-		// value is this: \Modules\TMS\Entities\TasksList. it's a path
+		// value is this: \Modules\TMS\Entities\TasksList. it's a path.
 
 		let arr = option.value.split("\\"); //we want the last token in this string
 		option.textContent = arr[arr.length - 1];
 	})
 }
 
-/**
-* reusable function to create options for select tags
-*/
-export function createOption(text, value) {
-	let option = document.createElement("option");
-	option.text = text;
-	option.value = value;
-	
-	return option;
-}
 
-export function createSelect({name, className, options, onchange}) {
+/* i opted out of using createDOMElement for select tags because appending options to it later would be a pain in the back. 
+this one saves you a few keystrokes hehe */
+
+export function createSelect({name = '', className, options, onchange}) {
 	let select = document.createElement("select");
 	select.name = name;
 	select.className = className;
 
 	if (options) {
-		select.append(...options.map(item => createOption(item, item)));
+		select.append(...options.map(item => createDOMElement('option', {
+			text: item,
+			value: item
+		})));
 	}
-
 	return select;
+}
+
+export function createInputWithDatalist({name, className, options}) {
+	let input = createDOMElement('input', {
+		className,
+		name,
+	});
+
+	input.setAttribute('list', name);
+
+	let datalist = createDOMElement('datalist', {
+		id: name,
+	});
+
+	options.forEach(option => {
+		datalist.append(createDOMElement('option', {
+			text: option,
+			value: option
+		}))
+	})
+	
+	// useful for destructuring
+	return [input, datalist];
 }
 
 /**
@@ -48,8 +66,3 @@ export function createDOMElement(name, options) {
 
 	return element;
 }
-
-/**
- * TODO: refactor createOption and createSelect
- */
-

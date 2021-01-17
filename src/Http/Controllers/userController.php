@@ -76,7 +76,7 @@ class userController extends Controller
         $assignes = Assigne::all();
 
         if($assignes->isNotEmpty()){
-        
+            
             foreach($roles as $role){
                 foreach($assignes as $assigne)
                 {

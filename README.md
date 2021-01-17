@@ -6,7 +6,7 @@
 
 ## this will linked between two projects
 
-## Installing Guzzle
+## Steps to Installing Bridage
 
 Bridage is a PHP package that linked easy with TMS_Modules.
 
@@ -57,6 +57,12 @@ MAIL_USERNAME=yourUsername
 MAIL_PASSWORD=yourPassword
 MAIL_ENCRYPTION=tls
 MAIL_FROM_ADDRESS=your email
+```
+- add to the kernel:
+```bash
+    protected $commands = [
+        \\Akrad\\Console\\Commands\\ObserversCommand::class,
+    ];
 ```
 
 ## Installing Bridage

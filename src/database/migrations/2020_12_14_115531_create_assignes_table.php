@@ -14,7 +14,7 @@ class CreateAssignesTable extends Migration
     public function up()
     {
         Schema::create('assignes', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->String('name');
             $table->timestamps();
         });

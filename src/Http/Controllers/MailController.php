@@ -42,7 +42,7 @@ class MailController extends Controller
             'msg' => $request->message,
         ];
 
-        dd('send SMS' ,$data);
+        //dd('send SMS' ,$data);
         
         return response()->json([
             'message' => 'SMS has been sent.'

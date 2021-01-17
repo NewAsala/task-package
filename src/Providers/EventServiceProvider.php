@@ -13,6 +13,9 @@ use Akrad\Bridage\Listeners\ApiUpdateProject;
 use Akrad\Bridage\Models\Helper;
 use Akrad\Bridage\Models\Models;
 use Akrad\Bridage\Observers\createObserver;
+use Akrad\Bridage\Observers\helperObserver;
+// use App\Models\Department;
+// use App\Observers\DepartmentObserverObserver;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -31,15 +34,17 @@ class EventServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {
+    { 
         parent::boot();
 
-        $helper  = Helper::all();
+        Helper::observe(helperObserver::class);
+        //Department::observe(DepartmentObserverObserver::class);
+        // $helper  = Helper::all();
 
-        foreach($helper as $help)
-        {
-            $model = Models::makeModel($help->object);
-            $model::observe(createObserver::class);
-        }
+        // foreach($helper as $help)
+        // {
+        //     $model = Models::makeModel($help->object);
+        //     $model::observe(createObserver::class);
+        // }
     }
 }

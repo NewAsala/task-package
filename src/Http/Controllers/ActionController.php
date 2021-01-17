@@ -26,8 +26,8 @@ class ActionController extends Controller
         $allaction = Action::all();
 
         foreach ($allaction as $action) {
-            
-            if ($request->func ==  $action->name) {
+			$functionName = json_decode($request->function_data)->func;
+            if ($functionName ==  $action->name) {
                 $action = Action::find($action->id);
 
                 $this->save($action, $request);
@@ -45,11 +45,14 @@ class ActionController extends Controller
 
     public function save($action, $request)
     {
-        $parameter = json_encode($request->parameter);
+		$requestFormat = json_decode($request->function_data);
+        $parameter = json_encode($requestFormat->parameters);
+		$functionName = $requestFormat->func;
+		$returnFun = $requestFormat->returnFun;
 
-        $action->name = $request->func?$request->func:$action->name;
+        $action->name = $functionName?$functionName:$action->name;
         $action->parameter = $parameter?$parameter:$action->parameter;
-        $action->returnFun = $request->returnFun?$request->returnFun:$action->returnFun;
+        $action->returnFun = $returnFun?$returnFun:$action->returnFun;
 
         $action->save();
     }

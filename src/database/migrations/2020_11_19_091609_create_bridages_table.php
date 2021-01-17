@@ -14,7 +14,7 @@ class CreateBridagesTable extends Migration
     public function up()
     {
         Schema::create('bridages', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('modelName');
             $table->unsignedBigInteger('modelId');
             $table->string('taskName');

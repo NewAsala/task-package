@@ -50,7 +50,6 @@ class helperController extends Controller
     {
         $conditionToFormat = "";
 
-        $contanString = "Str::contains({{}})";
         $conditions = json_decode($listOfConditions);
         
         foreach($conditions as $condition){
@@ -85,6 +84,8 @@ class helperController extends Controller
 
     public function send(Request $request)
     {
+        /////dd($request->all());
+        
         $actions = json_encode($request->action_data);
 
         $helper =  new Helper();

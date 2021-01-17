@@ -14,7 +14,7 @@ class CreateHelpersTable extends Migration
     public function up()
     {
         Schema::create('helpers', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->String('events');
             $table->String('object');
             $table->String('task_name')->nullable();

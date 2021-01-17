@@ -51,3 +51,6 @@ export function sendFormData() {
 		return arr;
 	}
 }
+/*
+	now this function might be the same as the one in the dynamic_function folder, but things are so cluttered in the listener.blade.php that i'm afraid i can't refactor code beyond this limit
+*/
