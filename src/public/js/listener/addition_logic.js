@@ -98,7 +98,7 @@ export function addAction() {
 			type: 'POST',
 			data: {
 				functionName: action,
-				//"_token": "{{ csrf_token() }}"
+				// "_token": "{{ csrf_token() }}"
 			},
 
 			success(result, loc) {
@@ -267,10 +267,10 @@ export function populateTableRow() {
 		}
 	}
 
-	generateHiddenTags(arrayOfTDs, numOfRows);
+	appendHiddenTags(arrayOfTDs, numOfRows);
 
-	// each time you add a new attribute i want all combined-condition select tags to be updated
-	for (let selectTag of complexConditionTable.querySelectorAll('.combined-condition')) {
+	// each time you add a new attribute i want all combined-condition select tags to be updated. THIS EXCLUDES THE SELECT TAG FOR THE OPERATOR IN BETWEEN THE TWO CONDITIONS
+	for (let selectTag of complexConditionTable.querySelectorAll('.combined-condition[name$="side"]')) {
 		updateOptions(selectTag);
 	}
 	
@@ -286,7 +286,7 @@ export function populateTableRow() {
 		for (let operator of globals.attributeOptions[index][1]) {
 			select.append(utility.createDOMElement('option', {
 				text: operator,
-				value: operator
+				value: utility.optionsMap.has(operator) ? utility.optionsMap.get(operator) : operator,
 			}))
 		}
 
@@ -295,7 +295,7 @@ export function populateTableRow() {
 		select.append(
 			...additionalOptions.map(option => utility.createDOMElement('option', {
 				text: option,
-				value: option
+				value: utility.optionsMap.has(option) ? utility.optionsMap.get(option) : option,
 			}))
 		)
 		// example: id != 5 (NOT)
@@ -317,18 +317,18 @@ function generateConditionTypeInputs(rowID) {
 		className: 'form-check-input',
 		checked: 'checked',
 		name: 'input_group' + rowID,
+		id: 'simple_input_group' + rowID,
 	})
 
 	simpleConditionInput.dataset.id = 'simple_condition';
-
 	
 	let simpleConditionLabel = utility.createDOMElement('label', {
 		textContent: 'Simple Input',
 		className: 'form-check-label',
 	})
+	simpleConditionLabel.setAttribute('for', 'simple_input_group' + rowID)
 
 
-	
 	simpleConditionDiv.append(simpleConditionInput);
 	simpleConditionDiv.append(simpleConditionLabel);
 
@@ -340,6 +340,7 @@ function generateConditionTypeInputs(rowID) {
 		type: 'radio',
 		className: 'form-check-input',
 		name: 'input_group' + rowID ,
+		id: 'complex_input_group' + rowID
 	})
 
 	combinedConditionInput.dataset.id = 'combined_condition';
@@ -348,6 +349,7 @@ function generateConditionTypeInputs(rowID) {
 		textContent: 'Combined Condition',
 		className: 'form-check-label',
 	})
+	combinedConditionLabel.setAttribute('for', 'complex_input_group' + rowID);
 
 	combinedConditionDiv.append(combinedConditionInput)
 	combinedConditionDiv.append(combinedConditionLabel)
@@ -373,25 +375,42 @@ function updateOptions(selectTag) {
 }
 
 /**
- * inserts the hidden tags responsible for combined conditions
- * @param {Array} arrayOfTDs - the array into which the function will insert the hidden tags
+ * appends the hidden tags responsible for combined conditions 
+ * @param {Array} arrayOfTDs - the array into which the function will append the hidden tags
  */
-function generateHiddenTags(arrayOfTDs, numOfRows) {
+function appendHiddenTags(arrayOfTDs, numOfRows) {
 	// the three select tags below are hidden and only visible when the user checks the combined condition input
 
-	let combinedConditionsSelectTag = utility.createSelect({
-		className: 'custom-select',
-		options: globals.complexConditionRows.filter(option => option != numOfRows), // i don't need the number of the row that contains this select tag. in our case it happens to be numOfRows. why? because it already adds an additional row -- the one with th elements
-		className: 'combined-condition custom-select'
+	// i don't need the number of the row that contains this select tag. in our case it happens to be numOfRows. why? because it already adds an additional row -- the one with th elements.
+	let availableConditions = globals.complexConditionRows.filter(option => {
+		return option != numOfRows;
+	}); 
+
+	// left-hand side condition
+	let combinedConditionsSelectTagL = utility.createSelect({
+		name: 'combined_condition_left_side',
+		className: 'custom-select combined-condition',
+		options: availableConditions
 	})
 	
-	arrayOfTDs[2].append(combinedConditionsSelectTag)
-	arrayOfTDs[4].append(combinedConditionsSelectTag.cloneNode(true))
-
+	// right-hand side condition. only the name property is different from the left-hand side select tag
+	let combinedConditionsSelectTagR = utility.createSelect({
+		name: 'combined_condition_right_side',
+		className: 'custom-select combined-condition',
+		options: availableConditions
+	})
+		
 	let hiddenOperatorSelectTag = utility.createSelect({
-		className: 'custom-select combined-condition-operator',
+		name: 'combined_condition_operator',
+		className: 'custom-select combined-condition',
 		options: ['AND', 'OR']
 	})
 
+	arrayOfTDs[2].append(combinedConditionsSelectTagL)
 	arrayOfTDs[3].append(hiddenOperatorSelectTag);
+	arrayOfTDs[4].append(combinedConditionsSelectTagR);
 }
+
+/**
+ * TODO: When one row references another row in the complex condition table, the other row cannot reference the first. Unless the user is an expert,  Not doing so will result in endless recursion.
+ */

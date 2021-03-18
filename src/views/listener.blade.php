@@ -7,7 +7,6 @@
 		<div class="col-sm-9 px-0 px-sm-3">
 			<form id = "form" action="{{route('models')}}" method="post">
 			@csrf
-
 				<div class="row my-2">
 					<div class="col">
 						<label for="events">Choose The Event:</label>
@@ -72,20 +71,32 @@
 										<th>Condition / User input</th>
 										<th>Suffix</th>
 										<th></th>
+										{{-- DO NOT REMOVE THIS EMPTY TH ELEMENT. THIS ENSURE PROPER SPACING FOR THE CLOSE BUTTON --}}
 									</tr>
 								</thead>
 
 								<tbody id = "table-body">
 								{{-- td elements are supposed to go here --}}
-								{{-- row numbering is implemented using css counters. check out app.css for more information --}}
+								{{-- row numbering is implemented using css counters. check out app.css for more information. make sure to support all browsers though, as chrome and edge do not support relative positioning for table rows --}}
 								</tbody>
 							</table>
+
+							<div class="final-condition mb-3">
+								<label for="">Enter the number of the row for the final condition: </label>
+								<input type="text"
+								 id = "finalConditionRowNumber"
+								 placeholder="E.g. 2"
+								 class="form-control"
+								>
+								<span class="error-message" style="color: red;"></span>
+							</div>
 
 							<div class="expected-output">
 								<label for="">Expected Output: </label>
 								<input type="text"
 								 placeholder="Press Save Conditions to show the expected condition"
-								 class="form-control"
+								 class="form-control" 
+								 readonly
 								 >
 							</div>
 
@@ -119,7 +130,7 @@
 					<div class="col">
 						<legend>Actions</legend>
 						<div class="actions-container">
-
+							{{-- new actions are supposed to go here --}}
 						</div>
 
 						<button id = "addAction" class ="btn btn-dark">Add Action</button>
@@ -131,8 +142,11 @@
 						<div class="hidden-action-data" data-action-name="{{$action->name}}"></div>
 					@endforeach
 				</div>
+
+				{{-- this is what will eventually be sent to backend regarding conditions and actions data --}}
 				<input type="hidden" id = "complex_condition_data" name="complex_condition_data">
 				<input type="hidden" name="action_data" id = "action_data">
+				
 				<button type="submit" class="btn btn-primary mt-3">Submit</button>
 			</form>
 		</div>

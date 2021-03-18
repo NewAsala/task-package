@@ -22,11 +22,14 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Builder;
+use PhpOption\None;
 use Str;
 
 
 class helperController extends Controller
 {
+    public static $conditionToFormat ="";
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -48,43 +51,44 @@ class helperController extends Controller
 
     public function formatCondition($listOfConditions)
     {
-        $conditionToFormat = "";
-
         $conditions = json_decode($listOfConditions);
-        
-        foreach($conditions as $condition){
-                                    
-            $prefix = $condition->prefix;
-            $attribute = $condition->attribute;
-            $operation = $condition->operator;
-            $user_input = $condition->user_input;
-            $suffix = $condition->suffix;
 
-            if($conditionToFormat == null){
+        $prefix1 = $conditions->prefix;
+        $suffix1 = $conditions->suffix;
 
-                if(($operation == 'like') || ($operation == 'in'))
+        if((!property_exists($conditions, 'combined_condition_left_side')) || (!property_exists($conditions, 'combined_condition_right_side'))){
+
+            $prefix = $conditions->prefix;
+            $attribute  = $conditions->attribute;
+            $operation = $conditions->operator;
+            $user_input = $conditions->user_input;
+            $suffix = $conditions->suffix;
+
+            if(($operation == 'like') || ($operation == 'in'))
+            {
+                if(Str::contains($suffix,"NONE"))
                 {
-                    $conditionToFormat = ($prefix  ."Str::contains(".'{{$'.$attribute.'}}'.",$user_input)".$suffix);
-                }else{
-                    $conditionToFormat = ($prefix .' {{$'.$attribute.'}} '.$operation. ' '.$user_input.' '.$suffix);
+                    $suffix = str_replace($suffix,' ',$suffix);
                 }
+                static::$conditionToFormat = ' '.$prefix ." Str::contains(".'{{$'.$attribute.'}}'.",$user_input)".$suffix.' ';
             }else{
+                
+                static::$conditionToFormat = ' '.$prefix .' {{$'.$attribute.'}} '.$operation. ' '.$user_input.' '.$suffix.' ';
+            }
+            return static::$conditionToFormat;
 
-                if(($operation == 'like') || ($operation == 'in'))
-                {
-                    $conditionToFormat = $conditionToFormat.' && '.($prefix ."Str::contains(".'{{$'.$attribute.'}}'.",$user_input)".$suffix);
-                }else{
-
-                    $conditionToFormat = $conditionToFormat.' && '.($prefix .' {{$'.$attribute.'}} '.$operation. ' '.$user_input.' '.$suffix);
-                }
-            }    
+        }else{
+            
+            return $prefix1.$this->formatCondition(json_encode($conditions->combined_condition_left_side)).$conditions->combined_condition_operator.$this->formatCondition(json_encode($conditions->combined_condition_right_side)).$suffix1;
         }
-        return $conditionToFormat;
     }
 
     public function send(Request $request)
     {
-        /////dd($request->all());
+        $temp =$request->complex_condition_data;
+
+        $condition = json_encode($this->formatCondition($temp));
+        dd($condition);
         
         $actions = json_encode($request->action_data);
 

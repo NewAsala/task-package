@@ -10,7 +10,6 @@ $.ajaxSetup({
 	}
 });
 
-
 // this basically initializes everything in the page and registers event listeners
 function main() {
 	utility.fixModelNames();
